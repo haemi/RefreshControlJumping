@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    private var dataArray = (1...64).map { "\($0)" }
 
     @IBOutlet var tableView: UITableView!
 
@@ -18,4 +19,18 @@ class ViewController: UIViewController {
     }
 
 
+}
+
+extension ViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+
+        cell.textLabel?.text = dataArray[indexPath.row]
+
+        return cell
+    }
 }
